@@ -1,0 +1,17 @@
+{
+  "database": {
+    "connection": {
+      "host": "127.0.0.1",
+      "user": "root",
+      "password": "root",
+      "database": "",
+      "port": 3306
+    }
+  },
+  "https": {
+    "path": "./ssl",
+    "privateKey": "",
+    "certificate": "",
+    "ca": ""
+  }
+}
