@@ -9,12 +9,13 @@ interface Config {
       port?: number
     }
   },
-  https: {
+  https?: {
     port: number,
     path: string
     privateKey: string
     certificate: string
     ca: string
   }
+  secret?: string
 }
 export default JSON.parse(fs.readFileSync('./config.json').toString()) as Config

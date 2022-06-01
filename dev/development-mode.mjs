@@ -27,9 +27,8 @@ babel.stdout.once('data', data => {
       data.toString()
     )
     treeKill(run_app_spawn.pid, error => {
-      if (error)
-        return
-      run_app_spawn = start_app()
+      if (!error)
+        run_app_spawn = start_app()
     })
   })
 })

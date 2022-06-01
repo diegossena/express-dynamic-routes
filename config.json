@@ -8,10 +8,5 @@
       "port": 3306
     }
   },
-  "https": {
-    "path": "./ssl",
-    "privateKey": "oversee.key",
-    "certificate": "",
-    "ca": ""
-  }
+  "secret": "b���h\u0015��h\u0003��~��ZC\u0016\u0011�w/��3\u0001�\u0001���]2�����H�����y\u0001\u0017L{�msj\u001c{H����\u0005��+zRP�v*\u001e\b\u0011͐�R3�\bB\u001a�EB\u0019�o��\u0014\u001ao<�E��A��#ꔜL\u000fU\"����P�Ē��\f`�[��"
 }

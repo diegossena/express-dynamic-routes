@@ -68,4 +68,6 @@ function loadRoutes(routes_path = routes_base_url) {
     })
   ).catch(error => console.error(routes_path, error))
 } loadRoutes()
-express_app.listen(port, () => console.info(`Listening on port ${port}`))
+express_app.listen(port, () => {
+  console.info(`Listening on port ${port}`)
+})
