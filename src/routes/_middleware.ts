@@ -8,8 +8,11 @@ interface ApiRequest extends Api.Request {
 export type ApiResponse = Api.Response<Api.Session.Get>
 // Middleware
 export default (request: ApiRequest, response: ApiResponse, next: NextFunction) => {
+  /*
   try {
-    request.context.auth_uid = jwt.verify(request.cookies.token).uid
+    request.context = {
+      auth_uid: jwt.verify(request.cookies.token).uid
+    }
   } catch (error) { }
   if (request.originalUrl !== '/session') {
     if (!request.context.auth_uid) {
@@ -20,5 +23,6 @@ export default (request: ApiRequest, response: ApiResponse, next: NextFunction) 
         .end()
     }
   }
+  */
   next()
 }
