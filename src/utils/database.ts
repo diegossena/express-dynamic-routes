@@ -19,7 +19,7 @@ declare module 'knex/types/tables' {
 export default knex({
   client: 'mysql2',
   connection: {
-    ...config.database.connection,
+    ...config.database,
     supportBigNumbers: true,
     bigNumberStrings: true
   }
