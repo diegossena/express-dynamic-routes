@@ -1,22 +1,6 @@
 import jwt from 'jsonwebtoken'
-import path from 'path'
-import fs from 'fs'
 import config from './config'
-import crypto from 'crypto'
-let secretOrPublicKey: Buffer | string
-if (config.https) {
-  if (!config.https.privateKey)
-    throw 'config.https.privateKey not found'
-  secretOrPublicKey = fs.readFileSync(
-    path.resolve(config.https.path, config.https.privateKey)
-  )
-} else {
-  secretOrPublicKey = config.secret
-  if (!secretOrPublicKey) {
-    secretOrPublicKey = config.secret = crypto.randomBytes(128).toString()
-    fs.writeFileSync('./config.json', JSON.stringify(config, null, 2))
-  }
-}
+const secretOrPublicKey = config.https?.privateKey || config.secret
 export interface Payload {
   uid: string
 }
