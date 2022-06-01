@@ -6,8 +6,8 @@ const express_app = express()
   .use('/', express.static(path.resolve('.', 'public')))
   .use(express.json())
 const port = 3000
-const routes_base_url = path.resolve(__dirname, 'routes')
 const method_keys = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
+const routes_base_url = path.resolve(__dirname, 'routes')
 const express_app_methods = {
   GET: (name: string, handler: any) => express_app.get(name, handler),
   POST: (name: string, handler: any) => express_app.post(name, handler),
@@ -45,7 +45,7 @@ function loadRoutes(routes_path = routes_base_url) {
           const route_url = pathToRouteUrl(routes_path)
           express_app.use(route_url, methods.default)
         } else {
-          const route_url = pathToRouteUrl(route_path)
+          const route_url = pathToRouteUrl(route_path) // /users/:user_id
           const allowed_methods = method_keys
             .filter(method_key => {
               if (methods[method_key]) {
@@ -66,6 +66,6 @@ function loadRoutes(routes_path = routes_base_url) {
         }
       }
     })
-  )
+  ).catch(error => console.error(routes_path, error))
 } loadRoutes()
 express_app.listen(port, () => console.info(`Listening on port ${port}`))

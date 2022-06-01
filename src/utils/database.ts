@@ -16,7 +16,6 @@ declare module 'knex/types/tables' {
   }
 }
 // Module
-console.log(true)
 export default knex({
   client: 'mysql2',
   connection: {

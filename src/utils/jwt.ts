@@ -2,6 +2,8 @@ import jwt from 'jsonwebtoken'
 import path from 'path'
 import fs from 'fs'
 import config from './config'
+if (!config.https.privateKey)
+  throw 'config.https.privateKey not found'
 const privateKey = fs.readFileSync(
   path.resolve(config.https.path, config.https.privateKey)
 )

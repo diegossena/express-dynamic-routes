@@ -14,7 +14,7 @@ export default (request: ApiRequest, response: ApiResponse, next: NextFunction) 
   if (request.originalUrl !== '/session') {
     if (!request.context.auth_uid) {
       response
-        .writeHead(404, {
+        .writeHead(401, {
           'Set-Cookie': 'token=; Path=/; expires=' + new Date(0)
         })
         .end()

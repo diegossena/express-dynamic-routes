@@ -15,16 +15,20 @@ try {
   )
 } catch (e) { }
 const babel = spawn('babel src --watch --out-dir app --extensions \".ts\"', { shell: true })
-babel.stdout.once('data', () => {
+babel.stdout.once('data', data => {
+  console.log(
+    `\n[${new Date().toLocaleString()}]`,
+    data.toString()
+  )
   let run_app_spawn = start_app()
-  babel.stdout.on('data', (data) => {
+  babel.stdout.on('data', data => {
     console.log(
       `\n[${new Date().toLocaleString()}]`,
       data.toString()
     )
     treeKill(run_app_spawn.pid, error => {
       if (error)
-        return console.error(error)
+        return
       run_app_spawn = start_app()
     })
   })

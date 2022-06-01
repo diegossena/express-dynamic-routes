@@ -10,7 +10,7 @@
   },
   "https": {
     "path": "./ssl",
-    "privateKey": "",
+    "privateKey": "oversee.key",
     "certificate": "",
     "ca": ""
   }
