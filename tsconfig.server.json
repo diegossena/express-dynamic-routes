@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "app",
+    "target": "ES2016",
+    "allowJs": true,
+    "isolatedModules": false,
+    "noEmit": false
+  },
+  "include": ["./src/**/*"]
+}

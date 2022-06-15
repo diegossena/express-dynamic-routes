@@ -3,7 +3,7 @@ import { rmSync } from 'fs'
 import path from 'path'
 import treeKill from 'tree-kill'
 function start_app() {
-  const app_spawn = spawn('set NODE_PATH=app&&node app', { shell: true })
+  const app_spawn = spawn('set NODE_PATH=app&&node app', process.argv, { shell: true })
   app_spawn.stdout.on('data', data => process.stdout.write(data))
   app_spawn.stderr.on('data', data => process.stdout.write(data))
   return app_spawn
@@ -14,7 +14,7 @@ try {
     { recursive: true, force: true }
   )
 } catch (e) { }
-const babel = spawn('babel src --watch --out-dir app --extensions \".ts\"', { shell: true })
+const babel = spawn('babel src --watch --out-dir app --extensions \".ts\" --ignore "src/pages"', { shell: true })
 babel.stdout.once('data', data => {
   console.log(
     `\n[${new Date().toLocaleString()}]`,

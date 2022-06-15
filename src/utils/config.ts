@@ -10,6 +10,7 @@ interface Config {
       port?: number
     }
   },
+  port: number
   https?: {
     port: number,
     path: string

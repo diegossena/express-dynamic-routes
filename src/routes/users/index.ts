@@ -16,7 +16,7 @@ export type ApiResponse = Api.Response<
   | { id: number }
 >
 let increment = 0
-export const users: User[] = []
+export const users: User[] = [{ id: 1, name: 'Erick' }]
 export function GET(_request: ApiRequest, response: ApiResponse) {
   response.send(users)
 }
