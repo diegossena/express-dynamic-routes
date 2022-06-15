@@ -1,4 +1,4 @@
-import express, { Request, Response, Express } from 'express'
+import express, { Request, Response } from 'express'
 import path from 'path'
 import fs from 'fs'
 import next from 'next'
@@ -88,9 +88,18 @@ function loadRoutes(routes_path = routes_base_url) {
   ).catch(error => console.error(routes_path, error))
 }
 // Services
+if (!process.argv[2]) {
+  loadRoutes()
+    .then(() => (
+      express_app.all('*', (request, response) => (
+        appRequestHandle(request, response)
+      ))
+    ))
+}
 next_server.prepare()
   .then(() => {
     if (process.argv[2]) {
+      const defaultRoutesLength = express_app._router.stack.length
       spawn(
         'babel src --watch',
         [
@@ -100,21 +109,16 @@ next_server.prepare()
         ],
         { shell: true }
       ).stdout.on('data', data => {
-        process.stdout.write(`[${new Date().toLocaleString()}] ${data}`)
-        express_app._router.stack.splice(3)
-        loadRoutes()
-          .then(() => (
-            express_app.all('*', (request, response) => (
-              appRequestHandle(request, response)
-            ))
-          ))
+        if (data.indexOf('0 files') === -1) {
+          express_app._router.stack.splice(defaultRoutesLength)
+          loadRoutes()
+            .then(() => {
+              express_app.all('*', (request, response) => (
+                appRequestHandle(request, response)
+              ))
+              process.stdout.write(`[${new Date().toLocaleString()}] ${data}`)
+            })
+        }
       })
-    } else {
-      loadRoutes()
-        .then(() => (
-          express_app.all('*', (request, response) => (
-            appRequestHandle(request, response)
-          ))
-        ))
     }
   })
